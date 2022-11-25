@@ -1,0 +1,15 @@
+console.log(10 >  5 && 100 < 120 && 5 > 6);
+console.log(10 >  5 || 100 < 120 || 7 > 6);
+console.log(100 && 40 && 30);
+console.log(100 && 0 && 30);
+console.log(100 && "" && 30);
+console.log(100 && undefined && 30);
+console.log(100 && null && 30);
+console.log("" && 0 && undefined && null && NaN && "hello");
+console.log("logical or");
+console.log(100 || 40 || 30);
+console.log(100 || 0 || 30);
+console.log(100 || "" || 30);
+console.log(100 || undefined || 30);
+console.log(100 || null || 30);
+console.log("" || 0 || undefined || null || NaN || "hello");
