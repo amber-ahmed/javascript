@@ -13,6 +13,15 @@ console.log("'A'")
 console.log("\"dar k aage jeet hai\"")//  \"  =  "
 console.log("hello\nworld")//  \n = newline
 console.log("hello\tworld")//  \t = tab space
+//string in two lines
+var str1 = "hello\
+hi"
+/*
+error
+var str1 = "hello
+hi"
+*/
+console.log(str1)
 //concatenate
 console.log("hello"+"world")
 console.log("hello"+5)
@@ -26,6 +35,9 @@ console.log("hello"+(5+5)-10)
 console.log(`hello world`)
 console.log(`hello\` "world'`)
 console.log(`hello\"`)
+var str = `hi
+ hello`
+ console.log(str)
 
 console.log("hello"+5+"world")
 console.log(`hello${5}world`)
@@ -69,4 +81,4 @@ var k = 10
 var m = --k
 console.log(m)
 console.log(k)
-//
+

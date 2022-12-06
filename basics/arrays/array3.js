@@ -9,10 +9,10 @@ console.log(b)
 console.log(b.pop())//return and remove last element form array
 console.log(b)
 //shift and unshift
-b.shift()
+b.shift()//return and remove first element of array
 console.log(b)
 console.log(b.length)
-b.unshift(100)
+b.unshift(100)//add 100 to beginning
 console.log(b)
 console.log(b.length)
 b.unshift(9,8,7)
