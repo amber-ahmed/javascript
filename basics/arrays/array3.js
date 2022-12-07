@@ -8,11 +8,16 @@ b.push(100,200,300)
 console.log(b)
 console.log(b.pop())//return and remove last element form array
 console.log(b)
+<<<<<<< HEAD
 //shift() and unshift()
 b.shift()
+=======
+//shift and unshift
+b.shift()//return and remove first element of array
+>>>>>>> 6c4461b3ae5a0aae525523c9ce828be8de779ea2
 console.log(b)
 console.log(b.length)
-b.unshift(100)
+b.unshift(100)//add 100 to beginning
 console.log(b)
 console.log(b.length)
 b.unshift(9,8,7)
