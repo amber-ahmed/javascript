@@ -46,7 +46,8 @@ console.log(`hello${5+5}world`)
 
 //variables
 var x // declaration
- x = 5+10 // initialization
+ x = 5+10 // assignment
+ //inizilisation = declaration  + assignment in one line eg; var y = 10
 console.log(x)
 console.log(x+5)
 var c = x + 5
@@ -81,4 +82,50 @@ var k = 10
 var m = --k
 console.log(m)
 console.log(k)
-
+//arithmetic operations on strings
+console.log("1000"-10)
+var c = "1000"
+console.log(typeof c)
+console.log(c-10) //   WE CAN PERFORM ARITHMETIC IF STRING IS IN NUMBER FORMAT
+console.log(typeof c)
+console.log(c + 10)//HERE ADDTIOTN OPERATOR(+) PERFORM CANCATENATE NOT ARITHMETIC
+var a = "1000"
+var x = a - 10
+console.log(typeof x)
+console.log(x)
+a = a - 10
+console.log(typeof a)
+console.log(a)
+c = c -0
+console.log(typeof c)
+console.log(c)
+var b = "105"
+b = +b // works bcz here + operator is unary
+console.log(typeof b)
+console.log(b)
+var i = "1001z"
+i = +(i) // i stored as number, but as NaN
+console.log(i) // NaN bcz i is not in number format
+console.log(typeof i) // NaN is also number
+//comparision
+//comparison operators return always boolean
+//less than and greater than
+console.log(5>10)
+var a = 30,b = 15
+console.log(a>b)
+console.log(30 <= 30)
+console.log(40 < 40)
+console.log(40 < (15 * 3))
+//equal
+console.log("100" == (10 ** 2))
+console.log("100" === (10 ** 2))
+//not equal
+console.log(5!=5)
+console.log("5"!=5)
+console.log("5"!=="5")
+console.log(""==0)
+console.log(""===0)
+//comparing more than 3 operators
+var a = 5, b = -3, c = -6
+console.log(c < b < c) 
+console.log(true<-6)  //TRUE = 1, FALSE = 0
