@@ -22,7 +22,7 @@ console.log(mixed[-1])
 console.log(mixed.at(-1))
 console.log(mixed.at(-2))
 var input=15
-var arr4 = new Array(input)//initialize arr4 with lenght
+var arr4 = new Array(input)//initialize arr4 with length
 console.log(arr4.length)
 console.log(arr4)
 

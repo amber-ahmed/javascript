@@ -1,4 +1,4 @@
-//push and pop
+//push() and pop()
 var b = [1,2,3]
 console.log(b)
 b[b.length]=4//adding value to array at last
@@ -8,7 +8,7 @@ b.push(100,200,300)
 console.log(b)
 console.log(b.pop())//return and remove last element form array
 console.log(b)
-//shift and unshift
+//shift() and unshift()
 b.shift()
 console.log(b)
 console.log(b.length)
@@ -17,3 +17,9 @@ console.log(b)
 console.log(b.length)
 b.unshift(9,8,7)
 console.log(b)
+//at()
+console.log(b)
+console.log(b.at(3))//same as b[3]
+console.log(b[-1])
+console.log(b.at(-1))
+
