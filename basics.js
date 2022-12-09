@@ -119,13 +119,19 @@ console.log(40 < (15 * 3))
 //equal
 console.log("100" == (10 ** 2))
 console.log("100" === (10 ** 2))
+console.log(""==0)
+console.log(""===0)
 //not equal
 console.log(5!=5)
 console.log("5"!=5)
 console.log("5"!=="5")
-console.log(""==0)
-console.log(""===0)
 //comparing more than 3 operators
 var a = 5, b = -3, c = -6
 console.log(c < b < c) 
 console.log(true<-6)  //TRUE = 1, FALSE = 0
+console.log("acb">"abc");  // less than and greater than compare falsy or truthy vallues other than integers and floats
+console.log("5"=="4")
+console.log(isNaN(5))
+console.log(isNaN("hi"))
+//IN JAVASCRIPT EMPTY STRING IS CONSIDER AS ZERO
+console.log(isNaN(""))//it is considering empty as zero hence it will return false
