@@ -11,8 +11,11 @@ console.log(isNaN("10"))
 console.log(isNaN(""))//false because empty string is zero
 console.log(isNaN(``))//false because empty string is zero
 console.log(isNaN(''))//false because empty string is zero
-console.log(isNaN(null))//false bcz null is zero
 console.log(isNaN(false))//false bcz false is zero
+console.log(""==0)
+console.log("null is not zero",null==0)
+console.log(false==0)
+console.log(NaN==0)
 console.log(isNaN(parseInt("")))//parseInt converts empty string to NaN
 console.log(!isNaN(parseInt("10")))
 console.log(isNaN(undefined))//true bcz undefined NaN
