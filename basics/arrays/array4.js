@@ -17,7 +17,7 @@ var fruits = ["Banana","Orange","Apple","Mangoes","Strawberry"]
 var delele = fruits.splice(1,2,"lemon","Kiwi")//remove 2 elements from index 1
 console.log(fruits)
 console.log(delele)//splice return array of deleted elements
-//by using splice you can remove elements from particular elements
+//by using splice you can remove elements from particular index
 fruits.splice(2,1)//removes element of index 2
 console.log(fruits)
 //slice 

@@ -8,7 +8,7 @@ let arr = [1,2,3,4,5]//same as a[0]=1,a[1]=2,a[2]=3,a[3]=4,a[4]=5
 console.log(arr[0])//indexing starts from 0
 console.log(arr)
 //you can store any  values in array
-//in other languages all array's values should be same type but in javascript you can store any different types
+//in other languages all array's values should be same type but in javascript you can store  different types
 let names = ["amber","furqan",'zoeib']
 console.log(names)
 console.log(names[2])
@@ -17,7 +17,7 @@ console.log(mixed)
 console.log(mixed[1],mixed[3])
 
 var i=0
-while(mixed[i++]!=undefined)
+while(mixed[i++]!=undefined)//stops if array contain undefined
 {}
 console.log(i-1)
 /*

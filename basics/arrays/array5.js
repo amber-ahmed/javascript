@@ -2,14 +2,15 @@
 var fruits = ['banana','orange','apple','mango']
 console.log(fruits.sort())
 //sort does not work on numbers
+
 //min and max in array
 var nums = [20,40,5,32,50]
 console.log(Math.max.apply(null,nums))//same as Math.mix(20,40,5,32,50)
 console.log(Math.min.apply(null,nums))
-//array iteration
+//array iterations
 //forEach()
 var arr = [45,32,99,72,54]
-arr.forEach(myFun)//forEach does not return anything
+arr.forEach(myFun)//forEach does not return anything 
 function myFun(value,index)
 {
     console.log(index +" "+value)
@@ -23,14 +24,14 @@ function myFun2(value,index)
 }
 console.log(num2)
 //filter()
-var numOver40 = num1.filter(filterFun)//iterate every element and check test with element,if element is passes then assign that element to new array
+var numOver40 = num1.filter(filterFun)//iterate every element and check test with element,if element  passes the test then assign that element to new array
 function filterFun(value)
 {
     return  value > 40  //in normal this returns true or false but because of filter it returns numbers greter than 40
 }
 console.log("filter " +numOver40)
 //reduce()
-var sum = num1.reduce(reduceFun)//iterate to each value and store previous value to total
+var sum = num1.reduce(reduceFun)//iterate to each value and store previous value to total//default initial value is 0
 console.log(num1)
 function reduceFun(value,total)
 {
@@ -42,7 +43,7 @@ sum = num1.reduce(reduceFun,100)
 console.log(sum)
 //reduceRight() same as reduce() but iterate right to left
 //every()
-//don't confuse with filter,filter return
+//don't confuse with filter,filter returns elements
 var allOver30 = num1.every(everyFun)//iterate every element if all passes test then return true else false
 console.log(allOver30)
 function everyFun(value)
