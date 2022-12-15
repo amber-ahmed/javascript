@@ -12,3 +12,20 @@ function loop(){
     }
 }
 loop()
+console.log()
+
+let b = "Outside";
+
+function main() {
+    let a = "";
+    console.log(a);
+    console.log(b);
+    if (a) {
+        let c='block';
+        console.log(c);
+    }else {
+        let c="binary";
+        console.log(c);
+    }
+}
+main();

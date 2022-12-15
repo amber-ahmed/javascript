@@ -1,13 +1,34 @@
 //scope of var is global
 function loop(){
-   // var i = 0
+   // var j = 0
    console.log("before declare",i)
-    for(var i = 0; i < 11; i++){
-        console.log(i)
+    for(var j = 0; j < 11; j++){
+        console.log(j)
     }
     console.log("wile")
-    while(i<21){
-        console.log(i++)
+    while(j<21){
+        console.log(j++)
     }
 }
 loop()
+console.log()
+a = 5;
+// console.log(a);
+
+function printNum() {
+  
+    while (i < 5) {
+        console.log(i);
+        i++;
+    }
+}
+printNum();
+
+console.log("This Is Output of Another Function");
+function printN() {
+    while (i < 11) {
+        console.log(i);
+        i++;
+    }
+}
+printN();
