@@ -1,3 +1,4 @@
+//Comparison operators always return true or false
 //less than and greater than
 console.log(5>10)
 var a = 30,b = 15
