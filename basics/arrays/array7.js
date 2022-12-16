@@ -233,8 +233,7 @@ var data = [
 console.log()
 
 // Filter
-var filtered = data.filter((ele)=>{
-
+var filtered = data.filter((ele)=>{//returns new array with passes test cases
     if(vowelOrNot(ele.name.charAt(0))||vowelOrNot(ele.company.name.charAt(0)))
         return ele
 })

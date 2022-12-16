@@ -108,8 +108,9 @@ i = +(i) // i stored as number, but as NaN
 console.log(i) // NaN bcz i is not in number format
 console.log(typeof i) // NaN is also number
 //comparision
-//comparison operators return always boolean
+//comparison operators  return  always boolean
 //less than and greater than
+console.log("comparion")
 console.log(5>10)
 var a = 30,b = 15
 console.log(a>b)
