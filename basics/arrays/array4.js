@@ -23,10 +23,19 @@ console.log(fruits)
 //slice 
 //slice is littel bit same as shift but difference is
 //shift remove and return the first element splice remove given number of elements and return array
+console.log("slice")
 console.log(fruits)
 var slicedarr = fruits.slice(2)//remove 2 elemenst from beginnign and return array
 console.log(slicedarr)
+slicedarr.push("pomegranate")
+console.log(fruits)
 // slice with two parameters behave different
 var cars = ['bmw','audi','mercedes','jaguar']
 slicedarr = cars.slice(1,3)//return the array of elements from 1 to 2(not include 3)
 console.log(slicedarr)
+//slice is shallow copy but
+var originalArray = [1, [2, 3], 4];
+var slicedArray = originalArray.slice(); 
+var nestedArray = slicedArray[1]; // [2, 3]
+nestedArray.push("oh no, I mutated the original array!");
+console.log(originalArray); // [1, [2, 3, "oh no, I mutated the original array!"], 4]

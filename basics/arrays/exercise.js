@@ -6,9 +6,12 @@ function is_array(input){
 console.log(is_array(input))
 //Write a JavaScript function to clone an array
 let arr = [5,2,6]
-function arr_Clone(arr){
+function arr_Clone(arr){// won't work on array of arrays and array of objects
     return arr.slice(0)
 }
+/*
+let arr_Clone = arr => return arr.scice(0)
+*/
 let clone = arr_Clone(arr)
 clone.push(45)
 console.log(arr)
