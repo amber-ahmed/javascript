@@ -28,3 +28,22 @@ function last(arr,n){
     return arr.slice(arr.length - n,arr.length)
 }
 console.log(last([5,78,32,6,46,15],-2))
+//Write a simple JavaScript program to join all elements of the following array into a string
+function join_ele(arr){
+    return arr.join('+')
+}
+console.log(join_ele(['reed','green','black','white']))
+//Write a JavaScript program which accept a number as input and insert dashes (-) 
+//between each two even numbers
+function dashBtEven(num){
+    let str = num.toString()
+    let result = []
+    for(let i = 0; i < str.length; i++){
+        if(str[i ]%2 === 0 && str [i+1]%2 === 0)
+            result.push(str[i],'-')
+        else
+            result.push(str[i])
+    }
+    return result.join("")
+}
+console.log(dashBtEven(25468326))

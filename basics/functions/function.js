@@ -1,3 +1,7 @@
+//Types of Functions
+//1 . Pre Defined Functions - Ex : Math.random()
+//2 . User Defined Fucntions - Ex : print 100 numbers print()
+//3 . Recursion Functions - Ex : Factorial of n fact()
 //even or odd
 function evenOdd(element){
     if(element%2)
