@@ -1,5 +1,4 @@
 //this keyword with objects
-
 const person = {
     firstName : "jhon",
     lastName : "doe",

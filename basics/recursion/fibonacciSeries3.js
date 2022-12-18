@@ -1,5 +1,6 @@
 
-var a,b
+    var a,b
+
 function fibSeries(n){
     if(n == 2){
         a = 0
@@ -13,6 +14,7 @@ function fibSeries(n){
         b = 0
         console.log(0)
     }
+     
     else{
         b = fibSeries(n - 1)
         c = a + b

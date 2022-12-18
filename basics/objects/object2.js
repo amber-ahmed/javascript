@@ -20,7 +20,23 @@ person3.lastName = "Doe";
 person3.age = 50;
 person3.eyeColor = "blue";
 console.log(person3)
-//object is immutable
+//3. Refer object8.js
+
+//4. Create an object using Object.create().
+const per = {
+    isHuman: false,
+    printIntroduction: function() {
+      console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+    }
+  };
+  const me = Object.create(per);
+  me.name = 'Matthew'; // "name" is a property set on "me", but not on "person"
+  me.printIntroduction();
+  //It does not change original object per bcz, it does not copy shallow copy,it just a prototype
+  console.log(per)
+
+
+//objects are MUTUBLE
 const x = person 
 /*
 Objects are mutable: They are addressed by reference, not by value.

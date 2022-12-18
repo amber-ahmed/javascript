@@ -8,7 +8,10 @@ console.log(arr3.toString())
 //join method
 console.log(arr3.join("*"))
 console.log(arr3.join(" "))
+//concat
+//Return An array	The content from the joined arrays
 //concatenate two arrarys
+console.log('concat')
 var concat = arr.concat(arr3)// concatenate arr and arr3 and gives new array and assign to concat
 console.log(concat)
 //splice and slice
@@ -22,7 +25,7 @@ fruits.splice(2,1)//removes element of index 2
 console.log(fruits)
 //slice 
 //slice is littel bit same as shift but difference is
-//shift remove and return the first element splice remove given number of elements and return array
+//slice remove and return the first elements, splice remove given number of elements and return array
 console.log("slice")
 console.log(fruits)
 var slicedarr = fruits.slice(2)//remove 2 elemenst from beginnign and return array

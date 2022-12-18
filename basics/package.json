@@ -1,7 +1,6 @@
 {
-  "name": "basics",
+  "name": "readline-sync",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "readline": "^1.3.0",
@@ -12,5 +11,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": ""
 }
