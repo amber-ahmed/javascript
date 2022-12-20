@@ -6,7 +6,7 @@ console.log(fruits.sort())
 //min and max in array
 var nums = [20,40,5,32,50]
 console.log(Math.max.apply(null,nums))//same as Math.max(20,40,5,32,50)
-console.log(Math.min.apply(null,nums))
+console.log(Math.min.apply(null,nums))//REFER apply.js IN FUNCTIONS
 //array iterations
 //forEach()
 var arr = [45,32,99,72,54]
