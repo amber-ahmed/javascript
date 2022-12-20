@@ -1,7 +1,6 @@
 {
   "name": "matrices",
   "version": "1.0.0",
-  "description": "",
   "main": "chalk.js",
   "type": "module",
   "scripts": {
@@ -11,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^5.2.0"
-  }
+    "chalk": "^5.2.0",
+    "readline-sync": "^1.4.10"
+  },
+  "description": ""
 }
