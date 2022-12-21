@@ -16,3 +16,21 @@ console.log(typeof false)
 console.log(typeof NaN)
 console.log(!5)
 console.log(!0)
+var a = "105"
+a = a * 1
+console.log(typeof(-a))
+console.log(typeof a)
+console.log("testing")
+var i = "1001z"
+i = +(i) // i stored as number, but as NaN
+console.log(i) // NaN bcz i is not in number format
+console.log(typeof i)
+if(typeof i === 'number')
+    console.log("not a number")
+console.log('ABC' > 'abc')// true > true
+console.log(true > true)// 1 > 1
+let input = 'a'
+if(input%2 == 0)
+    console.log('even')
+console.log(parseInt(false))
+console.log(false == "")

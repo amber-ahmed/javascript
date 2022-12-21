@@ -63,8 +63,8 @@ var pwr = 5**3  //5 power 3
 console.log(pwr)
 
 //increment and decrement operataors
-//post  ++x,--x
-//pre   x++,x--
+//pre  ++x,--x
+//post   x++,x--
 var x=10
 var y = x++ //x=x+1
 console.log(y)

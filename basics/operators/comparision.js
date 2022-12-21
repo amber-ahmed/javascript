@@ -1,6 +1,6 @@
 //Comparison operators always return true or false
 //less than and greater than
-console.log(5>10)
+console.log(5 > 10)
 var a = 30,b = 15
 console.log(a>b)
 console.log(30 <= 30)
@@ -20,8 +20,11 @@ var a = 5, b = -3, c = -6
 console.log(c < b < c) // checks left to right, first c < b is compared and return 
 //the value true then returned value is checked with remaining i.e true < c as true value is 1 it will 1 < c,so it will give false
 // NOTE : SO NEVER COMPARE MORE THAN 2 OPERATORS, INSTEAD USE LOGICAL OPERATOR
-console.log(true<-6)  //TRUE = 1, FALSE = 0
+console.log(true < -6)  //TRUE = 1, FALSE = 0
 console.log("acb">"abc");  // compare falsy or truthy vallues other than integers and floats also
+//TRUTHY AND FALSY VALUES
+console.log('ABC' > 'abc')//=> true > true => 1 > 1
+console.log(true > true)// 1 > 1
 console.log("5"=="4")
 console.log(isNaN(5))
 console.log(isNaN("hi"))
