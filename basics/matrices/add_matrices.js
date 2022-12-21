@@ -22,7 +22,7 @@ for (let i = 0; i < row1; i++) {
 
 let row2 = readLineSync.questionInt('enter row number of first matrix ')
 let col2 = readLineSync.questionInt('enter column number of first matrix ')
-if(row1 != row2 && col1 != col2)
+if(row1 != row2 || col1 != col2)
     console.log("cannot perform addtion on unequal matrices")
 else{
 console.log('enter elements of second matrix')

@@ -2,7 +2,7 @@ import { inputMatrix,printMatrix } from "./utils/index.js";
 let matrix1 = inputMatrix()
 let matrix2 = inputMatrix()
 function sumOfMatrix(matrix1,matrix2){
-    if(matrix1.length != matrix2.length && matrix1[0].length != matrix2[0].length){
+    if(matrix1.length != matrix2.length || matrix1[0].length != matrix2[0].length){
         console.log("Cannot perform addtion on unequals matrices")
         return[[]]
     }
