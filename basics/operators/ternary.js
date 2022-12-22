@@ -20,11 +20,7 @@ var a = 10 , b = 15
 //print big nubmer
 a > b ? console.log(a) : console.log(b)
 
-var isNum = false
-isNum = +isNum
-//check isNum is number or not
-Number.isInteger(parseInt(isNum)) && parseInt(isNum) != 'NaN' ? console.log("number") : console.log("not a number")
-console.log(parseInt(isNum))
+
 
 // var line = require('readline-sync');
 // var num=line.questionInt("enter a number ");
