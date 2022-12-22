@@ -16,3 +16,5 @@ console.log(arr)
 //above statement did not change other elements bcz inner arrays are store by reference
 //but not outer element
 
+//TIPS
+//https://markodenic.com/javascript-tips/
