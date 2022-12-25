@@ -1,3 +1,5 @@
+//TIPS
+//https://markodenic.com/javascript-tips/
 //BEHAVIOUR OF NaN
 //https://medium.com/coding-in-simple-english/how-to-check-for-nan-in-javascript-4294e555b447#:~:text=In%20JavaScript%2C%20the%20best%20way,NaN%20will%20always%20return%20true%20.
 
@@ -15,6 +17,3 @@ arr[1] = "hello"
 console.log(arr)
 //above statement did not change other elements bcz inner arrays are store by reference
 //but not outer element
-
-//TIPS
-//https://markodenic.com/javascript-tips/

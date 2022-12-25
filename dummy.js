@@ -34,3 +34,7 @@ if(input%2 == 0)
     console.log('even')
 console.log(parseInt(false))
 console.log(false == "")
+ //= new Array(3)
+ let matrix  = Array(3).fill(0)
+matrix[1][0] = ["j",2]
+console.log(matrix)
