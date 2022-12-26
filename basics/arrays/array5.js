@@ -9,6 +9,9 @@ console.log(Math.max.apply(null,nums))//same as Math.max(20,40,5,32,50)
 console.log(Math.min.apply(null,nums))//REFER apply.js IN FUNCTIONS
 //array iterations
 //forEach()
+//it does not return anything
+//it does not change original array
+//it is only used for accesing array element
 var arr = [45,32,99,72,54]
 arr.forEach(myFun)//forEach does not return anything 
 function myFun(value,index)
@@ -17,7 +20,7 @@ function myFun(value,index)
 }
 //map()
 //returns An array.	The results of a function for each array element.
-//usually we don't use return of map
+//does not change the original array
 console.log('map')
 var num1 =  [20,32,99,72,54]
 var num2 = num1.map(myFun2)//it iterate the num1 elements and assign new array to num2, it doesnot change num1,
