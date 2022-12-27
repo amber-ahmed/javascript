@@ -39,20 +39,22 @@ console.log(false == "")
 let matrix = Array(3).fill(0)
 //matrix[1][0] = ["j", 2]//gives error
 console.log(matrix)
+
+console.log()
 let arr = [
     {
         name : 'amber',
     age : 22},
     {
         name : 'ahmed',
-        age : 23
-    }
+        age : 23}
 ]
 console.log(arr)
-//console.log(arr[0].name)
-arr[0].name = chalk.red('hi')
-let data = JSON.stringify(arr[0])
-let str = data.split(',')
-str[0] = chalk.red(str[0])
-console.log(JSON.parse(str.join(',')))
-console.log(arr)
+console.log(arr[0].name)
+let temp = []
+for(i = 0; i < arr.length; i++){
+    temp[i] = JSON.stringify(arr[i])
+}
+console.log(temp)
+let str = chalk.red(temp[0])
+console.log(str)
