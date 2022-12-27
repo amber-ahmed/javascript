@@ -16,11 +16,8 @@ function pingAPI() {
 
             //Mapping the Data you received from API
             let namesArray = data.map((ele) => {
-                let res = JSON.parse(JSON.stringify(ele));
-                let str = chalk.red(res['name'])
                // console.log(str)
-                res['name'] = "str"
-                return res
+                return JSON.stringify(ele)
             })
             console.log(namesArray)
         })

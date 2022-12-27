@@ -55,6 +55,7 @@ let temp = []
 for(i = 0; i < arr.length; i++){
     temp[i] = JSON.stringify(arr[i])
 }
-console.log(temp)
+console.log(temp[0])
+console.table(temp[0])
 let str = chalk.red(temp[0])
 console.log(str)

@@ -1,9 +1,9 @@
 import axios from 'axios'
 function getUsers(){
-    axios.get('https://api.github.com/users',{
+    axios.get('https://api.github.com/users/amber-ahmed',{
         auth : {
             username : "amber-ahmed",
-            password : "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"//"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"
+            password : "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"
         }
     })
     .then((res) => {
