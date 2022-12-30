@@ -5,5 +5,4 @@ for (var i = 0; i < 4; i++) {
         console.log(arr[i - 1]);
     }, 4000);
 }
-
 console.log(i);
