@@ -23,23 +23,19 @@ function getData(){
         console.log('Follwers : ',res.data.followers)
         console.log('following : ',res.data.following)
         console.log('Top 5 Repos')
-
-
+        
         axios.get(`https://api.github.com/users/${userName}/repos`, {
         username : 'amber-ahmed',
         password : apiKey
     })
     .then((result) => {
-        for(let i = 0; i < result.data.length; i++){
+        for(let i = 0; i < 6; i++){
         console.log(result.data[i].name)
         }
     })
     .catch((err) => {
        console.error(err.response.data.message)
     })
-
-
-
     })
     .catch((error) => {
        console.error(error.response.data.message)
