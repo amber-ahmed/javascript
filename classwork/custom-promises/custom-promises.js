@@ -5,7 +5,8 @@ function delay(fun,ms){
             reject('time cannot be in negative')
         else
             {
-                setTimeout(() => resolve(fun()),ms)
+                setTimeout(fun,ms)
+                resolve()
             }
     })
 }
@@ -14,31 +15,37 @@ delay(() => console.log(100),1000).catch((err) => console.log(err))
 function cusReadFile(fileName,fun){
     return new Promise(function (resolve,reject) {
         try{
-            resolve(fs.readFile(fileName,fun))     
+            fs.readFile(fileName,fun)
+            resolve()     
         }catch(err){
-            reject('file not found')
+            reject('error')
         }
     })
 }
 
 cusReadFile("hello.txt", (err, data) => {
-    if (err)
-        throw err
+    if (err) {
+        console.error(err);
+        return;
+      }
     console.log(data.toString());
 }).catch((err)=>console.log(err))
 
 function cusWriteFile(fileName,data,fun){
     return new Promise(function (resolve,reject) {
         try{
-            resolve(fs.writeFile(fileName, data,fun))
+            fs.writeFile(fileName, data,fun)
+            resolve()
         }catch(err){
-            reject('file not found')
+            reject('error')
         }
     })
 }
 
 let data = 'hello world'
 cusWriteFile("hello.txt", data, (err) => {
-    if (err) throw err
-    console.log("completed")
+    if (err) {
+        console.error(err);
+        return;
+      }    console.log("completed")
 })

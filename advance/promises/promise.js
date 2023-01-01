@@ -1,5 +1,5 @@
-//promises are the special object return by a asynchronous functions , at beginning it returns
-//undefined object, later after function is executed it add values of it to the promises
+//promises are the special object return by a asynchronous functions , at beginning it is
+//in pending state, later after function is executed it add values of function to the promise object
 //suppose below function is asynchronous  function and return object res that is promise
 function createData(){
     let res = { name : 'ahmed', age : ""}
