@@ -13,11 +13,19 @@ app.use(express.json())//Global / App level
 }) 
 
 app.use('/', async (req,res) => {
-    console.log(req.query.page,req.query.page2)//http://localhost:5001/?page=123&&page2=321
+    console.log(req.query.page,req.query.page2)//http://localhost:5001/?page=123&page2=321
     console.log(req.headers)
     console.log(req.method)
     console.log(req.body)
     res.send('from server 2')
+})
+
+
+app.get('/amber/:users',(req,res) => {
+    // res.send('from server amber')
+    console.log(req.params)//http://localhost:5001/amber/123
+    console.log(req.params.users)
+    res.send('you send params ' + JSON.stringify(req.params))//CANNOT PASS OBJECT THROUGH res.send(), SO CONVERT FIRST OBJECT TO STRING
 })
 
 let port = 5001
@@ -26,6 +34,3 @@ app.listen(port,() => {
 })
 }
 getApi()
-//Middle wares
-//Global / Applevel
-//

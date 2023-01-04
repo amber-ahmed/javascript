@@ -16,6 +16,3 @@ app.listen(port,() => {
 })
 }
 getApi()
-//Middle wares
-//Global / Applevel
-//
