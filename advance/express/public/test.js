@@ -3,9 +3,9 @@ const app = express()
 
 
 app.use('/',(req,res) => {
-    res.redirect('www.youtube.com')
-    // res.send('from server')
+    // res.redirect('public')
+    res.send('from public server')
 })
-app.listen(5003,() => {
+app.listen(5004,() => {
     console.log('server started')
 })
