@@ -56,6 +56,13 @@ let app = express();
 // });
 
 // app.get("/", (req, res) => {
+/*
+http://localhost:5001
+header :
+auth : amber
+auth2 : ahmed
+
+*/
 //     console.log(req.headers.auth,req.headers.auth2)
 //     res.send("from server");
 //   });
@@ -69,14 +76,30 @@ let app = express();
 
 
 app.use(express.json()); //Global / App level
+
 // app.get("/", (req, res) => {
 //     console.log(req.body)
 //     res.send("from server");
 // });
 
 app.get("/", (req, res) => {
+  /*
+  http://localhost:5001
+  body :
+  {
+    "name" : "amber",
+    "age" : 22
+  }
+  header :
+  auth : amber
+  */
+    let header= {
+      auth : req.headers.auth,
+      auth2 : req.headers.auth2
+    }
     let data = req.body
     console.table(data)
+    console.table(header)
     res.send("from server");
 });
 

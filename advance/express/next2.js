@@ -4,13 +4,14 @@ const app = express();
 const port =6002;
 
 app.get("/",(req,res)=>{
+    console.log('root')
     res.send("Getting Response");
 })
 
 const cb0 = (req,res,next)=>{
     console.log(req);
     console.log(" I am in Callback 1");
-    req.adnan = "someValue"
+    req.amber = "someValue"
     next();
 }
 const cb1 = (req, res, next) => {
@@ -23,9 +24,9 @@ const callbacks = [cb0,cb1]
 
 app.get("/test",callbacks,(req,res)=>{
     console.log("Do Something");
-    console.log(req.adnan);
+    console.log(req.amber);
     console.log(req.a);
-    res.send("Check Req Object")
+    // res.send("Check Req Object")
 })
 
 

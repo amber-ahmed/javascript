@@ -1,5 +1,5 @@
 import express from "express";
-
+//MIDDLEWARE
 const app = express();
 const port =6001;
 
@@ -9,8 +9,8 @@ const port =6001;
 
 const cb0 = (req,res,next)=>{
     console.log(req);
-    console.log(" I am in Callback 1");
-    req.adnan = "someValue"
+    console.log(" I am in Callback");
+    req.amber = "someValue"
     // res.send('from first')
     next();
 }
@@ -18,7 +18,7 @@ const cb0 = (req,res,next)=>{
 
 app.get("/",cb0,(req,res)=>{
     console.log("Do Something");
-    console.log(req.adnan);
+    console.log(req.amber);
     console.log(req.a);
     res.send("Check Req Object")
 })
