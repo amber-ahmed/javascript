@@ -2,6 +2,7 @@
 let dataBase = {
     person1: 'amber',
     person2: 'ahmed',
+    person3 : 'taqi'
 }
 let userDetails = {
     amber: {
@@ -11,6 +12,10 @@ let userDetails = {
     ahmed: {
         name: 'ahmed',
         age: 23
+    },
+    taqi : {
+        name : 'taqi',
+        age : 21
     }
 }
 let promise = get(dataBase)
