@@ -7,7 +7,7 @@ const port =6001;
 //     res.send("Getting Response");
 // })
 
-const cb0 = (req,res,next)=>{
+const cb = (req,res,next)=>{
     console.log(req);
     console.log(" I am in Callback");
     req.amber = "someValue"
@@ -16,7 +16,7 @@ const cb0 = (req,res,next)=>{
 }
 
 
-app.get("/",cb0,(req,res)=>{
+app.get("/",cb,(req,res)=>{
     console.log("Do Something");
     console.log(req.amber);
     console.log(req.a);

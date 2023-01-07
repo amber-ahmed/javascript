@@ -46,7 +46,6 @@ app.post(
 
       let userData = { username, email, phone, location, password, todos: [] };
       fileData.push(userData);
-      console.log(JSON.stringify(fileData));
       await fs.writeFile("data.json", JSON.stringify(fileData));
       res.status(200).json({ success: "User Registered Successfully" });
     } catch (error) {

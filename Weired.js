@@ -17,3 +17,17 @@ arr[1] = "hello"
 console.log(arr)
 //above statement did not change other elements bcz inner arrays are store by reference
 //but not outer element
+
+// ARRAY IS OBJECT
+//Index of array other than positive integers consider as key and value is given to that is value of that key
+//You cannot access it through iteration because, we iterate it through index value
+//and as index value is not positive integer so we cannot access it
+//and it does not effect lenght of the array
+let arr2 = ["hi",25,3.78,true]
+arr2[4.5] = 'object value'
+console.log(arr2.length)
+console.log(arr2[4.5])
+arr2.forEach((ele) => {
+    console.log(ele)
+})
+console.log(Array.isArray(arr2))

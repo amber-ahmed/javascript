@@ -1,1 +1,18 @@
-[{"username":"amber","email":"amber@gmail.com","phone":"9876543210","location":"Hyd","password":"12345","password2":"12345","todos":[]}]
+[
+  {
+    "username": "amber",
+    "email": "amber@gmail.com",
+    "phone": "9876543210",
+    "location": "Hyd",
+    "password": "12345",
+    "todos": []
+  },
+  {
+    "username": "amber",
+    "email": "amber321@gmail.com",
+    "phone": "9876543210",
+    "location": "Hyd",
+    "password": "12345",
+    "todos": []
+  }
+]
