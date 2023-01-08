@@ -25,7 +25,7 @@ function userLoginValidation() {
 function errorMiddleWare(req, res, next) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ erros: errors.array() });
+        return res.status(400).json({ erros: errors.array() });
   }
   return next();
 }
