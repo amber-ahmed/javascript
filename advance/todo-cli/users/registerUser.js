@@ -51,7 +51,7 @@ async function registerUser() {
             throw ("User Already Exists");
         }
         let userData = { username, email, phone, location, password, todos: [] }
-        console.log(userData);
+        // console.log(userData);
 
         fileData.push(userData);
 
