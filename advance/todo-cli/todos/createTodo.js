@@ -4,7 +4,7 @@ import chalk from "chalk";
 
 import { randomStringGenerator } from "../utils/index.js";
 
-async function createTodo() {
+async function createTodo(email) {
     try {
         console.clear();
         console.log(`
@@ -12,7 +12,7 @@ async function createTodo() {
    \tCreate a Todo\n 
    ====================================`);
 
-        let email = readlineSync.questionEMail("Enter your Email : ");
+        // let email = readlineSync.questionEMail("Enter your Email : ");
 
         let todoName = readlineSync.question("Please Enter a Task : ");
         while(!todoName){
@@ -23,10 +23,10 @@ async function createTodo() {
         fileData = JSON.parse(fileData);
 
         //Checking if User Exists
+        // if (!emailFound) {
+        //     throw ("User Doesn't exist. Invalid Response");
+        // }
         let emailFound = fileData.find((ele) => ele.email == email);
-        if (!emailFound) {
-            throw ("User Doesn't exist. Invalid Response");
-        }
         let todoData = {
             todoName,
             isCompleted: false,
@@ -41,5 +41,6 @@ async function createTodo() {
     }
 }
 
-createTodo();
-// export default createTodo;
+// createTodo();
+
+export default createTodo;

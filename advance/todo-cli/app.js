@@ -6,6 +6,7 @@ import loading from "loading-cli"
 import { timer } from "./utils/index.js"
 import registerUser from "./users/registerUser.js";
 import userLogin from "./users/userLogin.js";
+import delelteUser from './users/deleteUser.js'
 //User Login 
 //User Registration
 //Delete User
@@ -41,8 +42,10 @@ async function displayMenu() {
                 await userLogin();
                 break;
             case 3:
-                console.log("User Deletion");
-                break;
+                await delelteUser()
+                break
+
+            break;
             default:
                 console.log("Invalid Option");
         }

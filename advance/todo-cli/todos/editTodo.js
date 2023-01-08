@@ -4,7 +4,7 @@ import chalk from "chalk";
 
 import { randomStringGenerator } from "../utils/index.js";
 
-async function editTodo() {
+async function editTodo(email) {
     try {
         console.clear();
         console.log(`
@@ -12,17 +12,17 @@ async function editTodo() {
    \tEdit a Todo\n 
    ====================================`);
         //Get User Email
-        let email = readlineSync.questionEMail("Enter your Email : ");
-
+        // let email = readlineSync.questionEMail("Enter your Email : ");
         let fileData = await fs.readFile("data.json");
         fileData = JSON.parse(fileData);
-
         //Checking if User Exists
+
         let emailFound = fileData.find((ele) => ele.email == email);
-        if (!emailFound) {
-            throw ("User Doesn't exist. Invalid Response");
-        }
+        // if (!emailFound) {
+        //     throw ("User Doesn't exist. Invalid Response");
+        // }
         //Display all the Tasks
+
         console.table(emailFound.todos);
 
         let todoIndex = readlineSync.questionInt("Enter the Task Index that you want to update : ");
@@ -30,7 +30,7 @@ async function editTodo() {
         //     todoIndex = readlineSync.questionInt("Enter a Valid Index that you want to update : ");
         // }
 
-        while (!emailFound.todos[todoIndex]) {
+        while (!emailFound.todos[todoIndex]  && todoIndex >= emailFound.todos.length) {
             todoIndex = readlineSync.questionInt("Enter a Valid Index that you want to update : ");
         }
 
@@ -66,5 +66,5 @@ async function editTodo() {
     }
 }
 
-editTodo();
-// export default editTodo;
+// editTodo('amber@gmail.com');
+export default editTodo;

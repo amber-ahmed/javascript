@@ -25,6 +25,7 @@ console.log(arr)
 //and it does not effect lenght of the array
 let arr2 = ["hi",25,3.78,true]
 arr2[4.5] = 'object value'
+console.log(arr2)
 console.log(arr2.length)
 console.log(arr2[4.5])
 arr2.forEach((ele) => {

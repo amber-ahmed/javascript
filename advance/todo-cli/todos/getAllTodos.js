@@ -4,7 +4,7 @@ import chalk from "chalk";
 
 import { randomStringGenerator } from "../utils/index.js";
 
-async function getAllTodos() {
+async function getAllTodos(email) {
     try {
         console.clear();
         console.log(`
@@ -12,7 +12,7 @@ async function getAllTodos() {
    \t List of all Todos\n 
    ====================================`);
 
-        let email = readlineSync.questionEMail("Enter your Email : ");
+        // let email = readlineSync.questionEMail("Enter your Email : ");
 
         //Read File Contents from data.json
         let fileData = await fs.readFile("data.json");
@@ -20,9 +20,9 @@ async function getAllTodos() {
 
         //Checking if User Exists
         let emailFound = fileData.find((ele) => ele.email == email);
-        if (!emailFound) {
-            throw ("User Doesn't exist. Invalid Response");
-        }
+        // if (!emailFound) {
+        //     throw ("User Doesn't exist. Invalid Response");
+        // }
         console.table(emailFound.todos);
      
         console.log(chalk.green("Tasks Fetched Successfully"))
@@ -32,5 +32,5 @@ async function getAllTodos() {
     }
 }
 
-getAllTodos();
-// export default getAllTodos;
+// getAllTodos();
+export default getAllTodos;
