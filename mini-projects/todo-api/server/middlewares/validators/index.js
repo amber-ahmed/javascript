@@ -22,6 +22,12 @@ function userLoginValidation() {
   ];
 }
 
+function todoAddValidator(){
+  return [
+    body("task", "task cannot be empty").notEmpty()
+  ];
+}
+
 function errorMiddleWare(req, res, next) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -29,4 +35,4 @@ function errorMiddleWare(req, res, next) {
   }
   return next();
 }
-export { userLoginValidation, uerRegisterationValidation, errorMiddleWare };
+export { userLoginValidation, uerRegisterationValidation, todoAddValidator, errorMiddleWare };

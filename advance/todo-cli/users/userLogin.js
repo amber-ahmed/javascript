@@ -1,4 +1,3 @@
-import chalk from "chalk";
 import fs from "fs/promises";
 import readlineSync from "readline-sync";
 import createTodo from "../todos/createTodo.js";

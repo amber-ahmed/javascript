@@ -35,7 +35,7 @@ async function registerUser() {
             password = readlineSync.question("Re-Enter your password : ", {
                 hideEchoBack: true,
             });
-            password = readlineSync.question("Confirm your password : ", {
+            confirmPassword = readlineSync.question("Confirm your password : ", {
                 hideEchoBack: true,
             });
         }

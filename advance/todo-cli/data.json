@@ -1,10 +1,16 @@
 [
   {
-    "username": "ahmed",
-    "email": "ahmed@gmail.com",
-    "phone": "8976543210",
-    "location": "kol",
+    "username": "amber",
+    "email": "amber@gmail.com",
+    "phone": "9876643210",
+    "location": "hyd",
     "password": "12345",
-    "todos": []
+    "todos": [
+      {
+        "todoName": "this is first task",
+        "isCompleted": false,
+        "todo_id": " iIEeRhK6t6rv"
+      }
+    ]
   }
 ]

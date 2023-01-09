@@ -1,6 +1,4 @@
-import fs from "fs/promises";
 import readlineSync from "readline-sync";
-import chalk from "chalk";
 import loading from "loading-cli"
 
 import { timer } from "./utils/index.js"
