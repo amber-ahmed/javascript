@@ -7,10 +7,12 @@ import {
   userLoginValidation,
   errorMiddleWare,
 } from "../../middlewares/validators/index.js";
+import authMiddleWare from "../../middlewares/auth/verifyToken.js";
 const router = express.Router();
 // router.use(express.json());
 router.post(
   "/register",
+  authMiddleWare,
   uerRegisterationValidation(),
   errorMiddleWare,
   async (req, res) => {
@@ -44,7 +46,8 @@ router.post(
 
 router.post(
   "/login",
-  userLoginValidation(),
+  authMiddleWare,
+  userLoginValidation(req),
   errorMiddleWare,
   async (req, res) => {
     try {

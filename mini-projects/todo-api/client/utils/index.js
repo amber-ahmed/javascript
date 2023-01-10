@@ -1,5 +1,5 @@
 import fs from "fs";
-
+import twilio from "twilio";
 function timer(time) {
     return new Promise((resolve, reject) => {
         if (time < 0 || !time) {
@@ -41,4 +41,28 @@ function readFile(fileName) {
     })
 }
 
-export { timer, randomStringGenerator, writeFile, readFile }
+async function sendSMS(obj){
+    let body = obj.message
+    let to = obj.phone
+    const accountSid = 'AC228f4d7ae385c110e4367f019d64a175';
+    const authToken = 'c82f5b226c9682b343613ac131777181';
+    const client = twilio(accountSid, authToken);
+    try{
+        let res = await  client.messages
+        .create({
+           body,
+           from: '+16516611544',
+           to
+         })
+         console.log(res.sid)
+
+    }catch(error){
+        console.error(error)
+    }
+   
+
+    }
+    
+
+
+export { timer, randomStringGenerator, writeFile, readFile, sendSMS }

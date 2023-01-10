@@ -2,6 +2,7 @@ import chalk from "chalk";
 import fs from "fs/promises";
 import axios from 'axios'
 import readlineSync from "readline-sync";
+import { sendSMS } from "../utils/index.js";
 // import {writeFile} from "../utils/index.js"
 
 async function registerUser() {
@@ -44,6 +45,9 @@ async function registerUser() {
 
         let body = {username,email,password,password2,location,phone}
         let result = await axios.post('http://localhost:5003/api/user/register',body)
+        await sendSMS({message : "Thanks for registering! We've reserved your space — see you there.",phone })
+
+
         console.log(chalk.green(result.data.success))
 
         // let fileData = await fs.readFile("data.json");
@@ -65,15 +69,16 @@ async function registerUser() {
 
 
     } catch (error) {
-        if(error.response.status == 400)
-        {
-            let arr = error.response.data.errors
-            arr.forEach((ele) => {
-                console.log(chalk.red(ele.msg))
-            })
-        }
-        else
-        console.error(chalk.red(error.response.data.error))
+        // if(error.response.status == 400)
+        // {
+        //     let arr = error.response.data.errors
+        //     arr.forEach((ele) => {
+        //         console.log(chalk.red(ele.msg))
+        //     })
+        // }
+        // else
+        // console.error(chalk.red(error.response.data.error))
+        console.error(error)
     }
 }
 
