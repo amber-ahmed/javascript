@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken'
 import displayMenu from "./client/app.js"
 import fs from 'fs/promises'
 import userLogin from './client/users/loginUser.js'
-import { homedir } from 'os'
 
 async function main(){
 
@@ -36,6 +35,8 @@ async function main(){
         };
 
         let response = await axios(config)
+        //below code is equivalent to above
+        //let response = await axios.post('http://localhost:5001/api/user/login',data)
         console.log(chalk.green(response.data.success))
         await fs.writeFile("./client/authToken.txt",response.data.token.toString());
 
