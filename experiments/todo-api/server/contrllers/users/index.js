@@ -23,7 +23,7 @@ router.post(
       console.log(email)
       let userFound = fileData.find((ele) => ele.email == email);
       console.log(userFound)
-      console.log( req.body)
+      console.log(req.body)
       if (userFound) {
         return res.status(409).json({ error: "User Already Exists" });
       }
@@ -47,37 +47,45 @@ router.post(
 router.post(
   "/login",
   authMiddleWare,
-  userLoginValidation(req),
+  userLoginValidation(),
   errorMiddleWare,
   async (req, res) => {
     try {
-      // console.log(req.body);
-      // console.log(req.ip);
 
-      //Reading FileData
+      let email
+      let username
+      let userFound
       let fileData = await fs.readFile("data.json");
       fileData = JSON.parse(fileData);
-
-      //Check for User
-      let userFound = fileData.find((ele) => ele.email == req.body.email);
-      if (!userFound) {
-        return res.status(401).json({ error: "Unauthorised Access" });
+      if (req.logged) {
+        userFound = fileData.find((ele) => ele.email == req.payload.email);
+        if (!userFound) {
+          return res.status(401).json({ error: "Unauthorised Access" });
+        }
       }
-
-      //Compare Hashed Passwords
+      else {
+        
+        userFound = fileData.find((ele) => ele.email == req.body.email);
+        if (!userFound) {
+          return res.status(401).json({ error: "Unauthorised Access" });
+        }
       const matchPassword = await bcrypt.compare(
         req.body.password,
         userFound.password
       );
-      // console.log(matchPassword);
-      if (!matchPassword) {
-        return res.status(401).json({ error: "Unauthorised Access" });
+        if (!matchPassword) {
+          return res.status(401).json({ error: "Unauthorised Access" });
+        }
       }
-      //Get Payload
-      const payload = { email: req.body.email, username: userFound.username };
+
+
+      email = userFound.email
+      username = userFound.username
+
+      const payload = { email, username };
       const privateKey = "developer";
       const token = jwt.sign(payload, privateKey, { expiresIn: "1h" });
-      res.status(200).json({ success: "Login is Successful",token  } );
+      res.status(200).json({ success: "Login is Successful", token });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal Server Error" });

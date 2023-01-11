@@ -3,9 +3,6 @@ import { body, validationResult } from "express-validator";
 
 
 function uerRegisterationValidation() {
-  if(req.logged){
-    return (req,res,next) => next()
-  }
   return [
     body("username", "username cannot be empty").notEmpty(),
     body("email", "Invalid emeil").isEmail(),
@@ -22,9 +19,6 @@ function uerRegisterationValidation() {
 }
 
 function userLoginValidation(req) {
-  if(req.logged){
-    return (req,res,next) => next()
-  }
   return [
     body("email", "Invalid email").isEmail(),
     body("password", "Wrong password").isLength({ min: 5 }),
@@ -32,9 +26,6 @@ function userLoginValidation(req) {
 }
 
 function todoAddValidator(){
-  if(req.logged){
-    return (req,res,next) => next()
-  }
   return [
     body("task", "task cannot be empty").notEmpty()
   ];
@@ -50,6 +41,8 @@ function todoAddValidator(){
 
 
 function errorMiddleWare(req, res, next) {
+  if(req.logged)
+    return next()
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
