@@ -10,6 +10,14 @@ import {
 import authMiddleWare from "../../middlewares/auth/verifyToken.js";
 const router = express.Router();
 // router.use(express.json());
+
+router.post("/home", authMiddleWare, async (req, res) => {
+  if (req.logged) {
+    return res.json({ logged: true, token: req.token });
+  }
+  return res.json({ logged: false });
+});
+
 router.post(
   "/register",
   authMiddleWare,
@@ -20,12 +28,12 @@ router.post(
       let { username, email, password, location, phone } = req.body;
       let fileData = await fs.readFile("data.json");
       fileData = JSON.parse(fileData);
-      console.log(email)
+      // console.log(email);
       let userFound = fileData.find((ele) => ele.email == email);
-      console.log(userFound)
-      console.log(req.body)
+      // console.log(userFound);
+      // console.log(req.body);
       if (userFound) {
-        return res.status(409).json({ error: "User Already Exists" });
+        return res.status(409).json({ register: false });
       }
 
       password = await bcrypt.hash(password, 12);
@@ -33,12 +41,17 @@ router.post(
       let userData = { email, username, password, location, phone, todos: [] };
 
       fileData.push(userData);
-
+      console.log("a");
       await fs.writeFile("data.json", JSON.stringify(fileData));
-
-      res.status(200).json({ success: "User is Registered Successfully" });
+      console.log('b');
+      const privateKey = "developer";
+      let payload = { email, username };
+      let token = jwt.sign(payload, privateKey, { expiresIn: "1h" });
+      console.log('c');
+      res.status(200).json({ register: true,token });
+      console.log('d');
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       res.status(500).json({ error: "Internal Server Error" });
     }
   }
@@ -51,43 +64,29 @@ router.post(
   errorMiddleWare,
   async (req, res) => {
     try {
+      if (req.logged) {
+        return res.json({ logged: true, token: req.token });
+      }
 
-      let email
-      let username
-      let userFound
       let fileData = await fs.readFile("data.json");
       fileData = JSON.parse(fileData);
-      if (req.logged) {
-        userFound = fileData.find((ele) => ele.email == req.payload.email);
-        if (!userFound) {
-          return res.status(401).json({ error: "Unauthorised Access" });
-        }
-      }
-      else {
-        
-        userFound = fileData.find((ele) => ele.email == req.body.email);
-        if (!userFound) {
-          return res.status(401).json({ error: "Unauthorised Access" });
-        }
+
+      let userFound = fileData.find((ele) => ele.email == req.body.email);
+
       const matchPassword = await bcrypt.compare(
         req.body.password,
         userFound.password
       );
-        if (!matchPassword) {
-          return res.status(401).json({ error: "Unauthorised Access" });
-        }
+      if (!matchPassword || !userFound) {
+        return res.status(401).json({ access: false });
       }
 
-
-      email = userFound.email
-      username = userFound.username
-
-      const payload = { email, username };
       const privateKey = "developer";
-      const token = jwt.sign(payload, privateKey, { expiresIn: "1h" });
-      res.status(200).json({ success: "Login is Successful", token });
+      let payload = { email: req.body.email, username: userFound.username };
+      let token = jwt.sign(payload, privateKey, { expiresIn: "1h" });
+      return res.status(200).json({ access: true, token });
     } catch (error) {
-      console.error(error);
+      //  console.error(error);
       res.status(500).json({ error: "Internal Server Error" });
     }
   }

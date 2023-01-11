@@ -3,33 +3,35 @@ import fs from "fs/promises";
 import chalk from "chalk";
 
 import { randomStringGenerator } from "../utils/index.js";
+import axios from "axios";
 
-async function getAllTodos(email) {
-    try {
-        console.clear();
-        console.log(`
+async function getAllTodos() {
+  try {
+    console.clear();
+    console.log(`
    ====================================\n
    \t List of all Todos\n 
    ====================================`);
+    let token = await fs.readFile("authToken.txt");
+    token = token.toString();
+    let response = await axios.post(
+      "http://localhost:5005/api/todos/view",
+      {},
+      {
+        headers: {
+          "auth-token": token,
+        },
+      }
+    );
 
-        // let email = readlineSync.questionEMail("Enter your Email : ");
+    console.table(response.data.todos)
 
-        //Read File Contents from data.json
-        let fileData = await fs.readFile("data.json");
-        fileData = JSON.parse(fileData);
+    // console.table(emailFound.todos);
 
-        //Checking if User Exists
-        let emailFound = fileData.find((ele) => ele.email == email);
-        // if (!emailFound) {
-        //     throw ("User Doesn't exist. Invalid Response");
-        // }
-        console.table(emailFound.todos);
-     
-        console.log(chalk.green("Tasks Fetched Successfully"))
-
-    } catch (error) {
-        console.error(error);
-    }
+    console.log(chalk.green("Tasks Fetched Successfully"));
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 // getAllTodos();

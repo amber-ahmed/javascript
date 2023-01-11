@@ -2,12 +2,11 @@ import express from 'express'
 import userRouter from './contrllers/users/index.js'
 import todoRouter from './contrllers/todos/index.js'
 const app = express()
-const port = 5003
+const port = 5005
 
 app.use(express.json())
 
 app.use('/api/user',userRouter)
-
 app.use('/api/todos',todoRouter)
 
 app.listen(port,() => {

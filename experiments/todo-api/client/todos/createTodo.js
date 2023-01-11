@@ -1,44 +1,72 @@
 import readlineSync from "readline-sync";
 import fs from "fs/promises";
 import chalk from "chalk";
+import axios from "axios";
 
 import { randomStringGenerator } from "../utils/index.js";
+import menu from "../display/index.js";
 
-async function createTodo(email) {
-    try {
-        console.clear();
-        console.log(`
+async function createTodo() {
+  try {
+    console.clear();
+    console.log(`
    ====================================\n
    \tCreate a Todo\n 
    ====================================`);
 
-        // let email = readlineSync.questionEMail("Enter your Email : ");
-
-        let todoName = readlineSync.question("Please Enter a Task : ");
-        while(!todoName){
-            todoName = readlineSync.question("Enter a Valid Task : ");
-        }
-
-        let fileData = await fs.readFile("data.json");
-        fileData = JSON.parse(fileData);
-
-        //Checking if User Exists
-        // if (!emailFound) {
-        //     throw ("User Doesn't exist. Invalid Response");
-        // }
-        let emailFound = fileData.find((ele) => ele.email == email);
-        let todoData = {
-            todoName,
-            isCompleted: false,
-            todo_id: randomStringGenerator(12)
-        }
-        emailFound.todos.push(todoData);
-        await fs.writeFile("data.json", JSON.stringify(fileData));
-        console.log(chalk.green("Task Added Successfully"))
-
-    } catch (error) {
-        console.error(error);
+    let todoName = readlineSync.question("Please Enter a Task : ");
+    while (!todoName) {
+      todoName = readlineSync.question("Enter a Valid Task : ");
     }
+    let data = { todoName };
+    let token = await fs.readFile("authToken.txt");
+    token = token.toString();
+    let response = await axios.post(
+      "http://localhost:5005/api/todos/add",
+      data,
+      {
+        headers: {
+          "auth-token": token,
+        },
+      }
+    );
+
+    if (response.data.access) {
+      await fs.writeFile("authToken.txt", response.data.token.toString());
+    }
+
+    let shouldContinue = readlineSync.question("Go To Home ? (Y/n) : ");
+    if (
+      shouldContinue === "y" ||
+      shouldContinue === "Y" ||
+      shouldContinue === "yes"
+    ) {
+      menu();
+    } else {
+      console.log("Thank you for Using, Bye!");
+    }
+  } catch (error) {
+    if (error.response.status == 400) {
+      let arr = error.response.data.errors;
+      arr.forEach((ele) => {
+        console.log(chalk.red(chalk.red(ele.msg)));
+      });
+    } else if (!error.response.data.access) {
+      console.error("Unuthorized access");
+    } else {
+      console.log("Internal server error");
+    }
+  }
+  let shouldContinue = readlineSync.question("Go To Home ? (Y/n) : ");
+  if (
+    shouldContinue === "y" ||
+    shouldContinue === "Y" ||
+    shouldContinue === "yes"
+  ) {
+    menu();
+  } else {
+    console.log("Thank you for Using, Bye!");
+  }
 }
 
 // createTodo();

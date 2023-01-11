@@ -31,13 +31,11 @@ function todoAddValidator(){
   ];
 }
 
-// function userLogged(req,res,next){
-//   if(req.logged){
-//     next()
-//   }
-//   else
-// }
-
+function todoDeleteValidator(){
+  return [
+    body('taskNumber',"Give valid task number").isNumeric()
+  ]
+}
 
 
 function errorMiddleWare(req, res, next) {
@@ -49,4 +47,4 @@ function errorMiddleWare(req, res, next) {
   }
   return next();
 }
-export { userLoginValidation, uerRegisterationValidation, todoAddValidator, errorMiddleWare };
+export { userLoginValidation, uerRegisterationValidation, todoAddValidator, errorMiddleWare, todoDeleteValidator };

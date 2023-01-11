@@ -2,53 +2,62 @@ import chalk from "chalk";
 import readlineSync from "readline-sync";
 import axios from "axios";
 import fs from "fs/promises";
-
+import menu from "../display/index.js";
 
 async function userLogin() {
-    try {
-        console.clear();
-        console.log(`
+  try {
+    console.clear();
+    console.log(`
    ====================================\n
    \tUser Login\n 
    ====================================`);
-        let email = readlineSync.questionEMail("Enter your Email : ");
-        let password = readlineSync.question("Enter your password : ", {
-            hideEchoBack: true,
-        });
-        while (!password) {
-            password = readlineSync.question("Enter a Valid Password : ", {
-                hideEchoBack: true,
-            });
-        }
-
-        let data = { email, password };
-        let config = {
-            method: 'post',
-            url: 'http://localhost:5003/api/user/login',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: data
-        };
-
-        let response = await axios(config)
-
-        console.log(chalk.green(response.data.success))
-        await fs.writeFile("authToken.txt",response.data.token.toString());
-
-    } catch (error) {
-        // console.error(error);
-        if(error.response.status == 400)
-        {
-            let arr = error.response.data.errors
-            arr.forEach((ele) => {
-                console.log(chalk.red(chalk.red(ele.msg)))
-            })
-        }
-        else
-            console.error(chalk.red(error.response.data.error))
-
+    let email = readlineSync.questionEMail("Enter your Email : ");
+    let password = readlineSync.question("Enter your password : ", {
+      hideEchoBack: true,
+    });
+    while (!password) {
+      password = readlineSync.question("Enter a Valid Password : ", {
+        hideEchoBack: true,
+      });
     }
+
+    let data = { email, password };
+    let response = await axios.post(
+      "http://localhost:5005/api/user/login",
+      data,
+      {}
+    );
+
+    if (response.data.access) {
+      await fs.writeFile("authToken.txt", response.data.token.toString());
+      await menu()
+    }
+    return
+  } catch (error) {
+    // console.error(error);
+    if (error.response.status == 400) {
+      let arr = error.response.data.errors;
+      arr.forEach((ele) => {
+        console.log(chalk.red(chalk.red(ele.msg)));
+      });
+    } else if (!error.response.data.access) {
+      console.error("Unuthorized access");
+    } else {
+      console.log("Internal server error");
+    }
+    let shouldContinue = readlineSync.question(
+      "Re login ? (Y/n) : "
+    );
+    if (
+      shouldContinue === "y" ||
+      shouldContinue === "Y" ||
+      shouldContinue === "yes"
+    ) {
+        userLogin()
+    } else {
+      console.log("Thank you for Using, Bye!");
+    }
+  }
 }
 
 // userLogin();
