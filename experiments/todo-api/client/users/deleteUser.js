@@ -4,6 +4,7 @@ import axios from "axios";
 import fs from "fs/promises";
 import menu from "../display/index.js";
 import continueApp from "../utils/continue.js";
+import main from "../todo.js";
 
 async function deleteUser() {
   try {
@@ -28,10 +29,15 @@ async function deleteUser() {
       data,
       {}
     );
-    // if (response.data.deleted) {
-    //   await fs.writeFile("authToken.txt","");
-    //   await menu()
-    // }
+if(response.data.deleted){
+  await fs.writeFile('authToken.txt','')
+  console.log('Account deleted successfully')
+  if (continueApp('Go to Home ?')) {
+main()
+  } else {
+return
+  }
+}
     return
   } catch (error) {
     console.error(error);
@@ -45,8 +51,8 @@ async function deleteUser() {
     } else {
       console.log("Internal server error");
     }
-    if (continueApp('Re login ?')) {
-      userLogin()
+    if (continueApp('Try Again ?')) {
+      deleteUser()
     } else {
       console.log("Thank you for Using, Bye!");
     }

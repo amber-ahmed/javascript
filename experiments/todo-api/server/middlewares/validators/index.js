@@ -3,6 +3,7 @@ import { body, validationResult } from "express-validator";
 
 
 function uerRegisterationValidation() {
+
   return [
     body("username", "username cannot be empty").notEmpty(),
     body("email", "Invalid emeil").isEmail(),

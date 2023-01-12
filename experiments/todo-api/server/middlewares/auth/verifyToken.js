@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 function authMiddleWare(req, res, next) {
   try {
+
     let token = req.headers["auth-token"];
     if (!token) {
       req.logged = false;

@@ -8,6 +8,7 @@ import {
   errorMiddleWare,
 } from "../../middlewares/validators/index.js";
 import authMiddleWare from "../../middlewares/auth/verifyToken.js";
+import { sendSMS } from "../../utils/index.js";
 const router = express.Router();
 // router.use(express.json());
 
@@ -23,11 +24,14 @@ router.post(
   authMiddleWare,
   uerRegisterationValidation(),
   errorMiddleWare,
-  async (req, res) => {
+  async (req, res, next) => {
     try {
       let { username, email, password, location, phone } = req.body;
+
       let fileData = await fs.readFile("data.json");
+
       fileData = JSON.parse(fileData);
+
       // console.log(email);
       let userFound = fileData.find((ele) => ele.email == email);
       // console.log(userFound);
@@ -41,19 +45,24 @@ router.post(
       let userData = { email, username, password, location, phone, todos: [] };
 
       fileData.push(userData);
-      console.log("a");
       await fs.writeFile("data.json", JSON.stringify(fileData));
-      console.log('b');
       const privateKey = "developer";
       let payload = { email, username };
       let token = jwt.sign(payload, privateKey, { expiresIn: "1h" });
-      console.log('c');
+      console.log('hi')
       res.status(200).json({ register: true,token }); 
-      console.log('d');
+      next()
     } catch (error) {
       // console.error(error);
       res.status(500).json({ error: "Internal Server Error" });
     }
+  },
+async  (req,res,next) => {
+  let obj = {
+    message : "Thank for registering",
+    phone : req.body.phone
+  }
+  await sendSMS(obj)
   }
 );
 
@@ -120,10 +129,13 @@ router.post(
         return res.status(401).json({ deleted: false });
       
       }
-      fileData.splice(fileData.indexOf(userFound),1)
-      await fs.writeFile('data.json',fileData)
-      return res.status(200).json({ success: true });
 
+      fileData.splice(fileData.indexOf(userFound),1)
+      await fs.writeFile('data.json',JSON.stringify(fileData))
+      
+      return res.status(200).json({ deleted: true });
+
+      console.log('c')
 
       // const privateKey = "developer";
       // let payload = { email: req.body.email, username: userFound.username };

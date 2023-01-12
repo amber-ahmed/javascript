@@ -4,6 +4,7 @@ import axios from "axios";
 import readlineSync from "readline-sync";
 import menu from "../display/index.js";
 import continueApp from "../utils/continue.js";
+import main from "../todo.js";
 // import {writeFile} from "../utils/index.js"
 
 async function registerUser() {
@@ -72,7 +73,7 @@ async function registerUser() {
     if (continueApp('Re register ?')) {
       registerUser()
     } else {
-  menu()
+main()
     }
   }
 }
