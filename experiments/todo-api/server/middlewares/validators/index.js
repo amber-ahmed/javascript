@@ -27,7 +27,7 @@ function userLoginValidation(req) {
 
 function todoAddValidator(){
   return [
-    body("task", "task cannot be empty").notEmpty()
+    body("todoName", "task cannot be empty").notEmpty()
   ];
 }
 

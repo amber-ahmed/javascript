@@ -3,7 +3,7 @@ import readlineSync from "readline-sync";
 import axios from "axios";
 import fs from "fs/promises";
 import menu from "../display/index.js";
-
+import continueApp from "../utils/continue.js";
 async function userLogin() {
   try {
     console.clear();
@@ -45,15 +45,8 @@ async function userLogin() {
     } else {
       console.log("Internal server error");
     }
-    let shouldContinue = readlineSync.question(
-      "Re login ? (Y/n) : "
-    );
-    if (
-      shouldContinue === "y" ||
-      shouldContinue === "Y" ||
-      shouldContinue === "yes"
-    ) {
-        userLogin()
+    if (continueApp('Re login ?')) {
+      userLogin()
     } else {
       console.log("Thank you for Using, Bye!");
     }

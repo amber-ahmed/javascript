@@ -4,6 +4,7 @@ import axios from "axios";
 import fs from "fs/promises";
 import menu from "../display/index.js";
 import main from "../todo.js";
+import continueApp from "../utils/continue.js";
 
 async function userLogout() {
   try {
@@ -12,17 +13,12 @@ async function userLogout() {
    ====================================\n
    \tUser Logout\n 
    ====================================`);
-    let Confirm = readlineSync.question("Do you really want to log out y/n : ");
-    if (
-        Confirm === "y" ||
-        Confirm === "Y" ||
-        Confirm === "yes"
-      ) {
-        await fs.writeFile('authToken.txt','')
-        main()
-      } else {
-        menu();
-    }
+   if (continueApp('Do you really want to log out ?')) {
+    await fs.writeFile('authToken.txt',"")
+    menu();
+  } else {
+menu()
+  }
     
   } catch (error) {
     console.log(error)

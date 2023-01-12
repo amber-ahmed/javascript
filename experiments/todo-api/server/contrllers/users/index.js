@@ -48,7 +48,7 @@ router.post(
       let payload = { email, username };
       let token = jwt.sign(payload, privateKey, { expiresIn: "1h" });
       console.log('c');
-      res.status(200).json({ register: true,token });
+      res.status(200).json({ register: true,token }); 
       console.log('d');
     } catch (error) {
       // console.error(error);
@@ -85,6 +85,50 @@ router.post(
       let payload = { email: req.body.email, username: userFound.username };
       let token = jwt.sign(payload, privateKey, { expiresIn: "1h" });
       return res.status(200).json({ access: true, token });
+    } catch (error) {
+      //  console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+);
+
+
+
+
+
+router.post(
+  "/delete",
+  authMiddleWare,
+  userLoginValidation(),
+  errorMiddleWare,
+  async (req, res) => {
+    try {
+      if (req.logged) {
+        return res.json({ logged: true, token: req.token });
+      }
+
+      let fileData = await fs.readFile("data.json");
+      fileData = JSON.parse(fileData);
+
+      let userFound = fileData.find((ele) => ele.email == req.body.email);
+
+      const matchPassword = await bcrypt.compare(
+        req.body.password,
+        userFound.password
+      );
+      if (!matchPassword || !userFound) {
+        return res.status(401).json({ deleted: false });
+      
+      }
+      fileData.splice(fileData.indexOf(userFound),1)
+      await fs.writeFile('data.json',fileData)
+      return res.status(200).json({ success: true });
+
+
+      // const privateKey = "developer";
+      // let payload = { email: req.body.email, username: userFound.username };
+      // let token = jwt.sign(payload, privateKey, { expiresIn: "1h" });
+      // return res.status(200).json({ access: true, token });
     } catch (error) {
       //  console.error(error);
       res.status(500).json({ error: "Internal Server Error" });

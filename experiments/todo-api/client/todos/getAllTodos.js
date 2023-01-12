@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import menu from "../display/index.js";
 import { randomStringGenerator } from "../utils/index.js";
 import axios from "axios";
+import continueApp from "../utils/continue.js";
 
 async function getAllTodos() {
   try {
@@ -24,13 +25,7 @@ async function getAllTodos() {
     );
 
     console.table(response.data.todos)
-    // console.log(chalk.green("Tasks Fetched Successfully"));
-    let shouldContinue = readlineSync.question("Go To Home ? (Y/n) : ");
-    if (
-      shouldContinue === "y" ||
-      shouldContinue === "Y" ||
-      shouldContinue === "yes"
-    ) {
+    if (continueApp('Go to Home ?')) {
       menu();
     } else {
       console.log("Thank you for Using, Bye!");

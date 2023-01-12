@@ -2,6 +2,7 @@ import readlineSync from "readline-sync";
 import fs from "fs/promises";
 import chalk from "chalk";
 import axios from "axios";
+import continueApp from "../utils/continue.js";
 
 async function deleteTodo() {
   try {
@@ -12,50 +13,43 @@ async function deleteTodo() {
    ====================================`);
 
 
-   
-   let token = await fs.readFile('authToken.txt')
-        token = token.toString()
-        let res = await axios.post(
-          "http://localhost:5005/api/todos/view",
-          {},
-          {
-            headers: {
-              "auth-token": token,
-            },
-          }
-        );
-    
-        console.table(res.data.todos)
 
-
-
-        let taskNumber = readlineSync.questionInt('Enter task number : ')
-        let data = {taskNumber}
-   let response = await axios.post(
-    "http://localhost:5005/api/todos/delete",
-    data,
-    {
-      headers : {
-          'auth-token' : token
+    let token = await fs.readFile('authToken.txt')
+    token = token.toString()
+    let res = await axios.post(
+      "http://localhost:5005/api/todos/view",
+      {},
+      {
+        headers: {
+          "auth-token": token,
+        },
       }
-    }
-  );   
-if(response.data.success){
-  console.log("task deleted succesfully")
-}
+    );
 
-let shouldContinue = readlineSync.question(
-  "Go To Home ? (Y/n) : "
-);
-if (
-  shouldContinue === "y" ||
-  shouldContinue === "Y" ||
-  shouldContinue === "yes"
-) {
-    menu()
-} else {
-  console.log("Thank you for Using, Bye!");
-}
+    console.table(res.data.todos)
+
+
+
+    let taskNumber = readlineSync.questionInt('Enter task number : ')
+    let data = { taskNumber }
+    let response = await axios.post(
+      "http://localhost:5005/api/todos/delete",
+      data,
+      {
+        headers: {
+          'auth-token': token
+        }
+      }
+    );
+    if (response.data.success) {
+      console.log("task deleted succesfully")
+    }
+
+    if (continueApp('Go to Home ?')) {
+      menu();
+    } else {
+      console.log("Thank you for Using, Bye!");
+    }
 
 
 
@@ -74,15 +68,8 @@ if (
     }
 
   }
-  let shouldContinue = readlineSync.question(
-    "Go To Home ? (Y/n) : "
-  );
-  if (
-    shouldContinue === "y" ||
-    shouldContinue === "Y" ||
-    shouldContinue === "yes"
-  ) {
-      menu()
+  if (continueApp('Go to Home ?')) {
+    menu();
   } else {
     console.log("Thank you for Using, Bye!");
   }

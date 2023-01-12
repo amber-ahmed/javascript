@@ -3,8 +3,8 @@ import fs from "fs/promises";
 import chalk from "chalk";
 import axios from "axios";
 import open from "open";
-import { randomStringGenerator } from "../utils/index.js";
-
+import menu from '../display/index.js'
+import continueApp from "../utils/continue.js";
 async function editTodo() {
     try {
         console.clear();
@@ -85,10 +85,7 @@ let data2 = {taskNumber,changes}
 
 
 
-    } catch (error) {
-        console.log(error);
-
-        
+    } catch (error) {        
     if (error.response.status == 400) {
         let arr = error.response.data.errors;
         arr.forEach((ele) => {
@@ -101,15 +98,8 @@ let data2 = {taskNumber,changes}
       }
   
     }
-    let shouldContinue = readlineSync.question(
-      "Go To Home ? (Y/n) : "
-    );
-    if (
-      shouldContinue === "y" ||
-      shouldContinue === "Y" ||
-      shouldContinue === "yes"
-    ) {
-        menu()
+    if (continueApp('Go to Home ?')) {
+      menu();
     } else {
       console.log("Thank you for Using, Bye!");
     }

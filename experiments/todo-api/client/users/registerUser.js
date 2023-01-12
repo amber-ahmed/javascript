@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import axios from "axios";
 import readlineSync from "readline-sync";
 import menu from "../display/index.js";
+import continueApp from "../utils/continue.js";
 // import {writeFile} from "../utils/index.js"
 
 async function registerUser() {
@@ -50,7 +51,7 @@ async function registerUser() {
     );
 
     if (response.data.register) {
-      // await fs.writeFile("authToken.txt", response.data.token.toString());
+      await fs.writeFile("authToken.txt", response.data.token.toString());
       await menu();
     }
     return
@@ -68,15 +69,10 @@ async function registerUser() {
     else {
       console.log(error);
     }
-    let shouldContinue = readlineSync.question("Re register ? (Y/n) : ");
-    if (
-      shouldContinue === "y" ||
-      shouldContinue === "Y" ||
-      shouldContinue === "yes"
-    ) {
-      registerUser();
+    if (continueApp('Re register ?')) {
+      registerUser()
     } else {
-      console.log("Thank you for Using, Bye!");
+  menu()
     }
   }
 }

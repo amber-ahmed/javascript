@@ -1,7 +1,6 @@
 {
   "name": "todo",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "type": "module",
   "scripts": {
@@ -13,5 +12,6 @@
   "dependencies": {
     "open": "^8.4.0",
     "readline-sync": "^1.4.10"
-  }
+  },
+  "description": ""
 }

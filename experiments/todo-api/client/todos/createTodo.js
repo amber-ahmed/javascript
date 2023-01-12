@@ -5,6 +5,7 @@ import axios from "axios";
 
 import { randomStringGenerator } from "../utils/index.js";
 import menu from "../display/index.js";
+import continueApp from "../utils/continue.js";
 
 async function createTodo() {
   try {
@@ -34,13 +35,8 @@ async function createTodo() {
     if (response.data.access) {
       await fs.writeFile("authToken.txt", response.data.token.toString());
     }
-
-    let shouldContinue = readlineSync.question("Go To Home ? (Y/n) : ");
-    if (
-      shouldContinue === "y" ||
-      shouldContinue === "Y" ||
-      shouldContinue === "yes"
-    ) {
+    console.log('task added')
+    if (continueApp('Go to Home ?')) {
       menu();
     } else {
       console.log("Thank you for Using, Bye!");
@@ -57,12 +53,7 @@ async function createTodo() {
       console.log("Internal server error");
     }
   }
-  let shouldContinue = readlineSync.question("Go To Home ? (Y/n) : ");
-  if (
-    shouldContinue === "y" ||
-    shouldContinue === "Y" ||
-    shouldContinue === "yes"
-  ) {
+  if (continueApp('Go to Home ?')) {
     menu();
   } else {
     console.log("Thank you for Using, Bye!");
