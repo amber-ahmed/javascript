@@ -1,70 +1,122 @@
 import readlineSync from "readline-sync";
 import fs from "fs/promises";
 import chalk from "chalk";
-
+import axios from "axios";
+import open from "open";
 import { randomStringGenerator } from "../utils/index.js";
 
-async function editTodo(email) {
+async function editTodo() {
     try {
         console.clear();
         console.log(`
    ====================================\n
    \tEdit a Todo\n 
    ====================================`);
-        //Get User Email
-        // let email = readlineSync.questionEMail("Enter your Email : ");
-        let fileData = await fs.readFile("data.json");
-        fileData = JSON.parse(fileData);
-        //Checking if User Exists
 
-        let emailFound = fileData.find((ele) => ele.email == email);
-        // if (!emailFound) {
-        //     throw ("User Doesn't exist. Invalid Response");
-        // }
-        //Display all the Tasks
-
-        console.table(emailFound.todos);
-
-        let todoIndex = readlineSync.questionInt("Enter the Task Index that you want to update : ");
-        // while (todoIndex > emailFound.todos.length - 1 || todoIndex < 0) {
-        //     todoIndex = readlineSync.questionInt("Enter a Valid Index that you want to update : ");
-        // }
-
-        while (!emailFound.todos[todoIndex]  && todoIndex >= emailFound.todos.length) {
-            todoIndex = readlineSync.questionInt("Enter a Valid Index that you want to update : ");
-        }
+    
+   let token = await fs.readFile('authToken.txt')
+        token = token.toString()
+        let res = await axios.post(
+          "http://localhost:5005/api/todos/view",
+          {},
+          {
+            headers: {
+              "auth-token": token,
+            },
+          }
+        );
+    
+        console.table(res.data.todos)
 
 
-        let todoName = readlineSync.question("Enter Updated Task : ");
-        while (!todoName) {
-            todoName = readlineSync.question("Enter a Valid Task : ");
-        }
 
-        let isCompleted = readlineSync.question("Is this Task Completed Enter (y/n)");
-        while (!isCompleted) {
-            isCompleted = readlineSync.question("Enter a Valid Input : ");
-        }
-        if (isCompleted === "y" ||
-            isCompleted === "Y" ||
-            isCompleted === "yes") {
-            isCompleted = true
-        } else {
-            isCompleted = false;
-        }
-        let todoData = {
-            todoName,
-            isCompleted,
-            todo_id: emailFound.todos[todoIndex].todo_id
-        }
-        emailFound.todos[todoIndex] = todoData;
+        let taskNumber = readlineSync.questionInt('Enter task number to edit: ')
 
-        await fs.writeFile("data.json", JSON.stringify(fileData));
-        console.log(chalk.green("Task Edited Successfully"))
+        let data = {taskNumber}
+        let response = await axios.post(
+         "http://localhost:5005/api/todos/singletodo",
+         data,
+         {
+           headers : {
+               'auth-token' : token
+           }
+         }
+       );  
+console.log(response.data.taskDetails)
+
+
+
+let task = response.data.taskDetails.todoName
+// let taskId = response.data.taskDetails.todo_id
+await fs.writeFile("./temp.txt", task);
+console.log("Edit in editor");
+await open("./temp.txt");
+let save = readlineSync.question("Do you want to save changes y/n : ");
+
+if (save == "y" || save == "Y" || save == "yes") {
+  let changes = await fs.readFile("./temp.txt");
+  changes = changes.toString()
+
+//   fileData = await fs.readFile("data.json");
+//   fileData = JSON.parse(fileData);
+//   fileData[taskNumber].todos = changes.toString()
+//   await fs.writeFile("data.json", JSON.stringify(fileData));
+
+let data2 = {taskNumber,changes}
+  let response2 = await axios.post(
+    "http://localhost:5005/api/todos/edit",
+    data2,
+    {
+      headers : {
+          'auth-token' : token
+      }
+    }
+  );   
+   if(response2.data.success)
+    console.log('Edit successfully')
+
+}
+
+
+
+
+   
+
+
+
 
     } catch (error) {
-        console.error(error);
+        console.log(error);
+
+        
+    if (error.response.status == 400) {
+        let arr = error.response.data.errors;
+        arr.forEach((ele) => {
+          console.log(chalk.red(chalk.red(ele.msg)));
+        });
+      } else if (error.response.data.error) {
+        console.error("enter valid task");
+      } else {
+        console.log(error);
+      }
+  
     }
-}
+    let shouldContinue = readlineSync.question(
+      "Go To Home ? (Y/n) : "
+    );
+    if (
+      shouldContinue === "y" ||
+      shouldContinue === "Y" ||
+      shouldContinue === "yes"
+    ) {
+        menu()
+    } else {
+      console.log("Thank you for Using, Bye!");
+    }
+
+
+    }
+
 
 // editTodo('amber@gmail.com');
 export default editTodo;

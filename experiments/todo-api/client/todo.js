@@ -6,6 +6,7 @@ import readlineSync from 'readline-sync'
 import userLogin from "./users/loginUser.js";
 import registerUser from "./users/registerUser.js";
 import menu from "./display/index.js";
+import exp from "constants";
 
 async function main() {
   try {
@@ -29,6 +30,7 @@ async function main() {
     Press 1 To Create a User
     Press 2 to Login
     `)
+    await fs.writeFile('authToken.txt','')
     let option = readlineSync.questionInt("Please Enter your Choice : ");
         switch (option) {
             case 0:
@@ -51,41 +53,10 @@ async function main() {
         // console.log('logged')
     }
 
-
-
-
-    /*
-    let login = true;
-
-    if (login) {
-      home();
-    } else {
-      displayMenu();
-    }
-
-    let data = { "auth-token": token };
-    let config = {
-      method: "post",
-      url: "http://localhost:5001/api/user/login",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
-
-    // let response = await axios(config);
-    //below code is equivalent to above
-    //let response = await axios.post('http://localhost:5001/api/user/login',data)
-    console.log(chalk.green(response.data.success));
-    await fs.writeFile(
-      "./client/authToken.txt",
-      response.data.token.toString()
-    );
-    */
   } catch (error) {
     // console.error(error);
-    console.error(error);
     console.error(error);
   }
 }
 main();
+export default main

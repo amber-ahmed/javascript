@@ -57,23 +57,9 @@ if (
   console.log("Thank you for Using, Bye!");
 }
 
-    // let fileData = await fs.readFile("data.json");
-    // fileData = JSON.parse(fileData);
-    // console.log(fileData);
-    // let emailFound = fileData.find((ele) => ele.email == email);
-    // console.table(emailFound.todos);
-    // let todoIndex = readlineSync.questionInt("Enter the Task Index that you want to delete : ");
-    // while (!emailFound.todos[todoIndex] && todoIndex >= emailFound.todos.length) {
-    //     todoIndex = readlineSync.questionInt("Enter a Valid Index that you want to delete : ");
-    // }
-
-    // emailFound.todos.splice(todoIndex,1)
-    // await fs.writeFile("data.json", JSON.stringify(fileData));
-    //     console.log(chalk.green("Task Edited Deleted"))
 
 
   } catch (error) {
-    // console.log(error);
 
 
     if (error.response.status == 400) {

@@ -1,1 +1,24 @@
-[{"email":"amber@gmail.com","username":"amber","password":"$2b$12$FUzPFM9R/soUQ5XBtIh.FOheiPhirTnNs7dMk8U.Fi4Aktkbn/hVi","location":"hyd","phone":"9874102365","todos":[]}]
+[
+  {
+    "email": "amber@gmail.com",
+    "username": "amber",
+    "password": "$2b$12$FUzPFM9R/soUQ5XBtIh.FOheiPhirTnNs7dMk8U.Fi4Aktkbn/hVi",
+    "location": "hyd",
+    "phone": "9874102365",
+    "todos": [
+      {
+        "todoName": "this is task updated",
+        "isCompleted": false,
+        "todo_id": " qb4AnP42Et2V"
+      }
+    ]
+  },
+  {
+    "email": "ahmed@gmail.com",
+    "username": "ahmed",
+    "password": "$2b$12$dBHKesvjGJk8OQOtesHnT.LITn9OJbYJJedO13fL9KX0IHY492eAy",
+    "location": "del",
+    "phone": "98745632103",
+    "todos": []
+  }
+]

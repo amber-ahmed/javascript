@@ -50,7 +50,7 @@ async function registerUser() {
     );
 
     if (response.data.register) {
-      await fs.writeFile("authToken.txt", response.data.token.toString());
+      // await fs.writeFile("authToken.txt", response.data.token.toString());
       await menu();
     }
     return

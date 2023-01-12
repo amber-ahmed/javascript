@@ -1,7 +1,6 @@
 import readlineSync from "readline-sync";
 import fs from "fs/promises";
-import chalk from "chalk";
-
+import menu from "../display/index.js";
 import { randomStringGenerator } from "../utils/index.js";
 import axios from "axios";
 
@@ -25,10 +24,17 @@ async function getAllTodos() {
     );
 
     console.table(response.data.todos)
-
-    // console.table(emailFound.todos);
-
-    console.log(chalk.green("Tasks Fetched Successfully"));
+    // console.log(chalk.green("Tasks Fetched Successfully"));
+    let shouldContinue = readlineSync.question("Go To Home ? (Y/n) : ");
+    if (
+      shouldContinue === "y" ||
+      shouldContinue === "Y" ||
+      shouldContinue === "yes"
+    ) {
+      menu();
+    } else {
+      console.log("Thank you for Using, Bye!");
+    }
   } catch (error) {
     console.error(error);
   }

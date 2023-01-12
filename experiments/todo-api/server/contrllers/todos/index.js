@@ -89,12 +89,10 @@ router.post("/view", authMiddleWare, async (req, res) => {
     let userFound = fileData.find((ele) => ele.email == req.payload.email);
 
     if (!userFound) {
-        console.log('server')
 
       return res.status(401).json({ access: false });
       
     }
-    console.log('server')
     if(userFound.todos.length ==  0)
         res.status(200).json({todos : 'No data'})
     res.status(200).json({todos : userFound.todos})
@@ -107,5 +105,63 @@ router.post("/view", authMiddleWare, async (req, res) => {
     console.log(error)
   }
 });
+
+
+
+router.post("/singletodo", authMiddleWare, async (req, res) => {
+  try {
+    if (!req.logged) {
+      return res.json({ access: false });
+    }
+    let fileData = await fs.readFile("data.json");
+    fileData = JSON.parse(fileData);
+    let userFound = fileData.find((ele) => ele.email == req.payload.email);
+    if (!userFound) {
+      return res.status(401).json({ access: false });
+    }
+
+    if (req.body.taskNumber >= userFound.todos.length) {
+      return res.status(401).json({ error: "enter valid task" });
+    }
+
+
+    let taskDetails = userFound.todos[req.body.taskNumber];
+    return res.status(200).json({ success: true,taskDetails });
+
+
+
+  } catch (error) {
+    console.log(error)
+  }
+});
+
+
+
+router.post("/edit", authMiddleWare, async (req, res) => {
+  try {
+    if (!req.logged) {
+      return res.json({ access: false });
+    }
+    let fileData = await fs.readFile("data.json");
+    fileData = JSON.parse(fileData);
+  //   console.log(req.payload.email);
+    let userFound = fileData.find((ele) => ele.email == req.payload.email);
+    if (!userFound) {
+      return res.status(401).json({ access: false });
+    }
+
+
+
+    userFound.todos[req.body.taskNumber].todoName = req.body.changes
+    await fs.writeFile("data.json", JSON.stringify(fileData));
+    return res.status(200).json({ success: true });
+
+
+
+  } catch (error) {
+    console.log(error)
+  }
+});
+
 
 export default router;

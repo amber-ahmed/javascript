@@ -3,6 +3,7 @@ import createTodo from "../todos/createTodo.js";
 import deleteTodo from "../todos/deleteTodo.js";
 import editTodo from "../todos/editTodo.js";
 import getAllTodos from "../todos/getAllTodos.js";
+import userLogout from '../users/logoutUser.js';
 
 async function menu() {
   console.clear();
@@ -40,8 +41,8 @@ Press 6 Delete Account
       return;
       break;
     case 5:
-      console.log("log out");
-      return;
+      await userLogout()
+    return;
       break;
     case 6:
       console.log("delelte account");
