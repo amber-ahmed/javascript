@@ -53,7 +53,7 @@ async function registerUser() {
 
     if (response.data.register) {
       await fs.writeFile("authToken.txt", response.data.token.toString());
-      await menu();
+      return menu();
     }
     return
   } catch (error) {
@@ -73,7 +73,7 @@ async function registerUser() {
     if (continueApp('Re register ?')) {
       registerUser()
     } else {
-main()
+return main()
     }
   }
 }

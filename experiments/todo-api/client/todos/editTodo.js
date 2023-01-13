@@ -74,7 +74,11 @@ let data2 = {taskNumber,changes}
   );   
    if(response2.data.success)
     console.log('Edit successfully')
-
+    if (continueApp('Go to Home ?')) {
+      return menu();
+    } else {
+      console.log("Thank you for Using, Bye!");
+    }
 }
 
 
@@ -99,7 +103,7 @@ let data2 = {taskNumber,changes}
   
     }
     if (continueApp('Go to Home ?')) {
-      menu();
+      return menu();
     } else {
       console.log("Thank you for Using, Bye!");
     }

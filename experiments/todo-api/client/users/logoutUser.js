@@ -15,9 +15,9 @@ async function userLogout() {
    ====================================`);
    if (continueApp('Do you really want to log out ?')) {
     await fs.writeFile('authToken.txt',"")
-    menu();
+    return main();
   } else {
-menu()
+return menu()
   }
     
   } catch (error) {

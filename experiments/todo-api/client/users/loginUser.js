@@ -30,7 +30,7 @@ async function userLogin() {
 
     if (response.data.access) {
       await fs.writeFile("authToken.txt", response.data.token.toString());
-      await menu()
+      return menu()
     }
     return
   } catch (error) {
@@ -46,7 +46,7 @@ async function userLogin() {
       console.log("Internal server error");
     }
     if (continueApp('Re login ?')) {
-      userLogin()
+     return userLogin()
     } else {
       console.log("Thank you for Using, Bye!");
     }

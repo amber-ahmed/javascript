@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import chalk from "chalk";
 import axios from "axios";
 import continueApp from "../utils/continue.js";
+import menu from '../display/index.js'
 
 async function deleteTodo() {
   try {
@@ -46,7 +47,7 @@ async function deleteTodo() {
     }
 
     if (continueApp('Go to Home ?')) {
-      menu();
+      return menu();
     } else {
       console.log("Thank you for Using, Bye!");
     }
@@ -69,7 +70,7 @@ async function deleteTodo() {
 
   }
   if (continueApp('Go to Home ?')) {
-    menu();
+    return menu();
   } else {
     console.log("Thank you for Using, Bye!");
   }

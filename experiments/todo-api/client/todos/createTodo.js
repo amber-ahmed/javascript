@@ -37,7 +37,7 @@ async function createTodo() {
     }
     console.log('task added')
     if (continueApp('Go to Home ?')) {
-      menu();
+      return    menu();
     } else {
       console.log("Thank you for Using, Bye!");
     }
@@ -54,7 +54,7 @@ async function createTodo() {
     }
   }
   if (continueApp('Go to Home ?')) {
-    menu();
+    return menu();
   } else {
     console.log("Thank you for Using, Bye!");
   }

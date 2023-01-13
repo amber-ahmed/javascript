@@ -32,13 +32,8 @@ async function deleteUser() {
 if(response.data.deleted){
   await fs.writeFile('authToken.txt','')
   console.log('Account deleted successfully')
-  if (continueApp('Go to Home ?')) {
-main()
-  } else {
-return
-  }
+  return main()
 }
-    return
   } catch (error) {
     console.error(error);
     if (error.response.status == 400) {
@@ -52,7 +47,7 @@ return
       console.log("Internal server error");
     }
     if (continueApp('Try Again ?')) {
-      deleteUser()
+      return deleteUser()
     } else {
       console.log("Thank you for Using, Bye!");
     }

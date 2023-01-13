@@ -26,7 +26,7 @@ async function getAllTodos() {
 
     console.table(response.data.todos)
     if (continueApp('Go to Home ?')) {
-      menu();
+     return menu();
     } else {
       console.log("Thank you for Using, Bye!");
     }
